@@ -1,0 +1,342 @@
+/* design tokens */
+:root {
+  /* modular scale */
+  --step--3: clamp(0.745rem, 0.765rem + 0.0946vw, 0.9rem);
+  --step--2: clamp(0.9113rem, 0.8922rem + 0.0951vw, 0.96rem);
+  --step--1: clamp(1.0938rem, 1.0523rem + 0.2073vw, 1.2rem);
+  --step-0: clamp(1.3125rem, 1.2393rem + 0.3659vw, 1.5rem);
+  --step-1: clamp(1.575rem, 1.4579rem + 0.5854vw, 1.875rem);
+  --step-2: clamp(1.89rem, 1.7129rem + 0.8854vw, 2.3438rem);
+  --step-3: clamp(2.2681rem, 2.0098rem + 1.2915vw, 2.93rem);
+  --step-4: clamp(2.7219rem, 2.355rem + 1.8341vw, 3.6619rem);
+  --step-5: clamp(3.2656rem, 2.7537rem + 2.5598vw, 4.5775rem);
+  --supertiny: 12px;
+
+  /* colors */
+  --background-color: hsl(83, 5%, 96%);
+  --background-color-overlay: hsla(0, 0%, 0%, 0.85);
+  --background-color-button: hsla(0, 0%, 7%, 0.8);
+  --color: hsla(0, 0%, 7%, 0.9);
+  --color-white: hsla(0, 0%, 100%, 1);
+  --color-light: hsla(0, 0%, 7%, 0.6);
+  --color-reverse: hsl(83, 5%, 96%);
+  --color-reverse-light: hsla(83, 5%, 96%, 0.54);
+  --color-navbar-white: hsla(0, 0%, 100%, 0.9);
+  --color-input: hsl(0, 0%, 33.3%);
+  --color-black: hsla(0, 0%, 0%, 1);
+
+  /* borders */
+  --border-width: 1px;
+  --border-width-double: calc(2 * var(--border-width));
+  --border-width-half: calc(0.5 * var(--border-width));
+  --border-radius-input: 50px;
+  --border-color: hsl(0, 0%, 92.9%);
+  --border-color-input: hsl(0, 0%, 93.3%);
+
+  --shadow-color: 60deg 2% 60%;
+  --shadow-elevation-low: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
+    1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
+  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+    0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
+    2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
+    5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
+  --shadow-elevation-high: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
+    2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
+    4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
+    7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
+    11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
+    17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
+    25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
+
+  --measure: 80ch;
+
+  /* static spacing */
+  --padding-top-bottom: 4px;
+  --padding-top-bottom-double: 8px;
+  --padding-section-top-bottom: 3rem;
+  --padding-sides: 16px;
+  --padding-sides-half: 8px;
+  --padding-sides-tiny: 2px;
+  --padding-section-sides: 1rem;
+
+  --spacing-base: 1.5rem;
+  --spacing-half: calc(0.5 * var(--spacing-base));
+  --spacing-quarter: calc(0.5 * var(--spacing-half));
+  --spacing-quarter-half: calc(0.5 * var(--spacing-quarter));
+  --spacing-double: calc(2 * var(--spacing-base));
+  --spacing-letter-base: 0.382rem;
+  --spacing-letter-half: calc(0.5 * var(--spacing-letter-base));
+
+  --gutter: var(--spacing-base);
+
+  --icon-height: 2.628rem;
+  --icon-width: 2.628rem;
+
+  /* fonts */
+  --font-heading: 'Chakra Petch', sans-serif;
+  --font-copy: 'Nunito Sans', sans-serif;
+}
+
+/* keyframes and animations */
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pop_in {
+  0% {
+    opacity: 0;
+    transform: translateY(-4rem) scale(0.8);
+  }
+  100% {
+    opacity: 0.8;
+    transform: none;
+  }
+}
+
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+* {
+  margin: 0;
+}
+
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font-size: 0.9rem;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: var(--color);
+  text-transform: uppercase;
+  letter-spacing: var(--spacing-letter-base);
+  max-width: var(--measure);
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* general styles */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-copy);
+  color: var(--color);
+  overflow-x: hidden;
+}
+
+.no_scroll {
+  overflow: hidden;
+}
+
+.flow {
+  --flow-space: var(--step-4);
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space);
+  display: block;
+}
+
+.clipped {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
+}
+
+.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+p > a,
+p > a:hover,
+p > a:focus,
+p > a:active,
+p > a:visited {
+  text-decoration: underline;
+  font-weight: 600;
+  color: var(--color);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.3, 0.1, 0.58, 1);
+}
+
+p > a:hover {
+  color: hsl(180, 6.7%, 53.3%);
+}
+
+p > a:visited {
+  color: hsl(180, 20.3%, 25.1%);
+}
+
+figcaption {
+  font-size: var(--step--3);
+  font-family: var(--font-copy);
+}
+
+ul {
+  margin-left: 1.5rem;
+}
+
+form {
+  --flow-space: var(--supertiny) !important;
+}
+
+label,
+.message—confirmation {
+  font-size: var(--step--2);
+}
+
+input,
+textarea {
+  border-color: var(--border-color-input);
+  border-style: solid;
+  border-width: var(--border-width-double);
+  background-color: var(--color-white);
+  letter-spacing: calc(0.5 * var(--spacing-letter-base));
+  padding: var(--padding-top-bottom);
+  opacity: 0;
+  animation: fade_in 0.3s ease-in forwards;
+  animation-delay: 0.3s;
+  flex-grow: 1;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.3, 0.1, 0.58, 1);
+  border-right-style: none;
+  color: var(--color-black);
+}
+
+input[type="checkbox"] {
+  border-color: var(--border-color-input);
+  border-style: solid;
+  border-width: var(--border-width-double);
+  background-color: var(--color-white);
+  opacity: 0;
+  animation: fade_in 0.3s ease-in forwards;
+  animation-delay: 0.3s;
+  flex-grow: 1;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.3, 0.1, 0.58, 1);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--color);
+}
+
+button, .button_link {
+  background-color: var(--background-color-button);
+  color: var(--color-reverse);
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+  font-size: calc(0.96 * var(--step--3));
+  letter-spacing: calc(0.5 * var(--spacing-letter-base));
+  padding: calc(2 * var(--padding-top-bottom)) calc(var(--padding-section-sides));
+  transition: all 0.3s cubic-bezier(0.3, 0.1, 0.58, 1);
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+  user-select: none;
+  animation: fade_in 0.3s ease-in forwards;
+  animation-delay: 0.3s;
+}
+
+.icon {
+  height: var(--icon-height);
+  width: var(--icon-width);
+  stroke-width: 1.5;
+  fill: none;
+  opacity: 0;
+  animation: fade_in 0.3s ease-in forwards;
+  animation-delay: 0.3s;
+}
+
+.icon > * {
+  stroke: var(--color-white);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.headline {
+  font-family: var(--font-heading);
+  font-size: var(--step--2);
+  margin-bottom: var(--spacing-base);
+  color: var(--color);
+  text-transform: uppercase;
+  letter-spacing: var(--spacing-letter-base);
+  opacity: 0;
+  animation: fade_in 0.6s ease-in forwards;
+  animation-delay: 0.6s;
+}
+
+.headline_sub {
+  font-size: var(--step--1);
+  margin-top: var(--spacing-quarter-half);
+  letter-spacing: var(--spacing-letter-half);
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: var(--spacing-quarter-half);
+}

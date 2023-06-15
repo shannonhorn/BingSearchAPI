@@ -1,2 +1,1 @@
-# BingSearchAPI
-Artech React BIng Search API example.
+Artech Bing Search API Example.
