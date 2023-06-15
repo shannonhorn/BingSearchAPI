@@ -46,7 +46,7 @@ export default function Search() {
         {results.map((result, index) => (
           <div key={index} className={styles.resultItem}>
             <Link href={result.url} target='_blank' rel='noreferrer'>{result.name}</Link>
-            <p>{result.snippet}</p>
+            <p><span>{result.snippet}</span></p>
           </div>
         ))}
       </section>

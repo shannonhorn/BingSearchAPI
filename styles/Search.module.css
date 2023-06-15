@@ -62,3 +62,10 @@
     font-size: 110%;
     color: #00007F;
   }
+
+  .resultItem p span {
+    max-width: 40ch;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
